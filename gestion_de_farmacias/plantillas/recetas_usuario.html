@@ -2,7 +2,7 @@
 {% extends 'base.html' %} 
 
 <!--Titulo de la pagina o pestaña-->
-{% block title %}Mis Recetas{% endblock  %}
+{% block title %}Receta de usuario{% endblock  %}
 
 {% block content %}
 
@@ -11,20 +11,21 @@
 	
 	<div class="m-3">
 
-		<h1>Mis Recetas</h1>
-	
-		{% if object_list  %}
+		<h1>Receta de usuario</h1>
+	<p> {{object.nombre}} </p>
+		{% if Recetas  %}
 			<div class="table-responsive">
                                 <table class="table table-hover">
                                         
                                         <thead class="thead-dark">
                                                 <tr>
-                                                        <th>Medicamento</th>
-                                                        <th>Paciente</th>
-                                                        <th>Medico</th>
-                                                        <th>Descripcion</th>
-                                                        <th>Vencimiento</th>
-                                                        <th>Estado</th>
+                                                        <th> medicamento </th>
+                                                                <th> paciente </th>
+                                                                <th> medico </th>
+                                                                <th> descripcion </th>
+                                                                <th> vencimiento </th>
+                                                                <th> estado </th>
+                                                        
                                                         {% comment "" %}
                                                         <th>...</th>
                                                         {% endcomment %}
@@ -32,7 +33,7 @@
                                         </thead>
                                         
                                         <tbody>
-                                                {% for receta in object_list %}
+                                                {% for receta in Recetas %}
                                                         <tr>
                                                                 <td>{{ receta.medicamento }}</td>
                                                                 <td>{{ receta.paciente }}</td>

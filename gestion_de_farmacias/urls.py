@@ -19,14 +19,16 @@ from django.contrib.auth.views import LoginView, logout_then_login
 
 #from gestion_de_farmacias.views import login, inicio
 from gestion_de_farmacias import views
-from gestionUsuarios.views import RegistrarUsuario, EditarUsuario, ListaDeUsuarios, ListarRecetas, EditarReceta, UsuarioReceta
-from gestionStock.views import ListarMedicamentos, Stock, EditarStock
+from gestionUsuarios.views import MisRecetas,RecetasUsuario,  RegistrarUsuario, EditarUsuario, ListaDeUsuarios, ListarRecetas, EditarReceta, ActulizarMiUsuario,MiUsuario
+from gestionStock.views import ListarMedicamentos, MiStock, Stock, EditarStock
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.inicio, name="inicio"),
-    path('inicio/', views.inicio, name="inicio"),
+    #path('', views.inicio, name="inicio"),
+    path('',  views.InicioView.as_view(), name="inicio"),
+    path('inicio/', views.InicioView.as_view(), name="inicio"),
+
 
     #path('login/', views.login, name="login"),
     #path('login/', LoginView.as_view(template_name='login.html'), name="login"),
@@ -44,19 +46,28 @@ urlpatterns = [
     path('stock/', Stock.as_view(), name="stock"),
     #path('crear_stock/', views.LoteCreate.as_view(), name="cerar_stock"),
     path('editar_stock/<int:pk>', EditarStock.as_view(), name="editar_stock"),
+    path('mi_stock/', MiStock.as_view(), name="mi_stock"),
 
 
     #path('receta/<int:receta_numero>/<str:usuario>', views.receta, name="receta"),
     #path('recetas/', views.recetas, name="recetas"),
     path('recetas/', ListarRecetas.as_view(), name="recetas"),
     path('editar_receta/<int:pk>', EditarReceta.as_view(), name="editar_stock"),
-    path('mis_recetas/', UsuarioReceta.as_view(), name="mis_recetas"),
+    path('mis_recetas/', MisRecetas.as_view(), name="mis_recetas"), #la clase MisRecetas esta en gestionUsuarios.views
+    #path('<pk:cedula_de_identidad>/', RecetasUsuario.as_view(), name="recetas_usuario"),
+    #path('recetas_usuario/<int:pk>/', RecetasUsuario.as_view(), name="recetas_usuario"),
+    path('recetas_usuario/<int:pk>/', RecetasUsuario.as_view(), name='recetas_usuario'),
+                    
 
     path('lista_de_usuarios/', ListaDeUsuarios.as_view(), name="lista_de_usuarios"),
     path('registrar_usuario/', RegistrarUsuario.as_view(), name="registrar_usuario"),
-    path('editar_usuario/<int:pk>', EditarUsuario.as_view(), name="editar_usuario"),
+    #path('editar_usuario/', EditarUsuario.as_view(), name="editar_usuario"),
+    #path('actualizar_mi_usuario/', ActulizarMiUsuario.as_view(), name="actualizar_mi_usuario"),
+    path('mi_usuario/', EditarUsuario.as_view(), name="mi_usuario"),
     
+
     
+    # Rutas para cargar datos a la base de datos
     path('carga_medicamentos/', views.carga_medicamentos, name="carga_medicamentos"),
     path('carga_usuarios/', views.carga_usuarios, name="carga_usuarios"),
 
