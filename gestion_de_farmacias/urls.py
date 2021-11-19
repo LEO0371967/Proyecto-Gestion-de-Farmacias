@@ -19,8 +19,8 @@ from django.contrib.auth.views import LoginView, logout_then_login
 
 #from gestion_de_farmacias.views import login, inicio
 from gestion_de_farmacias import views
-from gestionUsuarios.views import MisRecetas,RecetasUsuario,  RegistrarUsuario, EditarUsuario, ListaDeUsuarios, ListarRecetas, EditarReceta, ActulizarMiUsuario,MiUsuario
-from gestionStock.views import ListarMedicamentos, MiStock, Stock, EditarStock
+from gestionUsuarios.views import RecetasUsuario, MisRecetas, RegistrarUsuario, EditarUsuario, ListaDeUsuarios, ListarRecetas, EditarReceta, ActulizarMiUsuario,MiUsuario
+from gestionStock.views import ListarFarmacias, ListarMedicamentos, MiStock, Stock, EditarStock
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,6 +41,7 @@ urlpatterns = [
     #path('medicamentos/', views.medicamentos, name="medicamentos"),
     path('medicamentos/', ListarMedicamentos.as_view(), name="medicamentos"),
     #path('buscar_medicamento/', buscar_medicamento, name="buscar_medicamento"),
+    path('farmacias/', ListarFarmacias.as_view(), name="Farmacias"),
 
 
     path('stock/', Stock.as_view(), name="stock"),
@@ -54,10 +55,8 @@ urlpatterns = [
     path('recetas/', ListarRecetas.as_view(), name="recetas"),
     path('editar_receta/<int:pk>', EditarReceta.as_view(), name="editar_stock"),
     path('mis_recetas/', MisRecetas.as_view(), name="mis_recetas"), #la clase MisRecetas esta en gestionUsuarios.views
-    #path('<pk:cedula_de_identidad>/', RecetasUsuario.as_view(), name="recetas_usuario"),
-    #path('recetas_usuario/<int:pk>/', RecetasUsuario.as_view(), name="recetas_usuario"),
     path('recetas_usuario/<int:pk>/', RecetasUsuario.as_view(), name='recetas_usuario'),
-                    
+
 
     path('lista_de_usuarios/', ListaDeUsuarios.as_view(), name="lista_de_usuarios"),
     path('registrar_usuario/', RegistrarUsuario.as_view(), name="registrar_usuario"),
@@ -70,6 +69,7 @@ urlpatterns = [
     # Rutas para cargar datos a la base de datos
     path('carga_medicamentos/', views.carga_medicamentos, name="carga_medicamentos"),
     path('carga_usuarios/', views.carga_usuarios, name="carga_usuarios"),
+    path('carga_farmacias/',views.carga_farmacias, name="carga_farmacias"),
 
     
 ]

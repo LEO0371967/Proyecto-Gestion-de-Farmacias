@@ -2,53 +2,61 @@
 <!-- Contenido estatico de la pagina -->
 
 <!--Titulo de la pagina o pestaña-->
-{% block title %} Lista de Usuarios {% endblock %} {% block content %}
+{% block title %} Farmacias {% endblock %} 
+
+{% block content %}
 
 <!--Nav bar-->
 {% include "nav.html" %}
 
 <div class="m-3">
-    <h1>Lista de Usuarios</h1>
+    <h1>Farmacias</h1>
 
-    <!-- ==============================-->
-    <!-- Tabla con los Usuarios activos -->
-    <!-- ==============================-->
-    {% if object_list %}
+    <div class="consulta farmacias mb-3">
+        <h3>
+            <p>Criterios de búsqueda</p>
+        </h3>
+        <input type="text" class="form-control mb-2" id="cc-number" placeholder="Nombre, Departamento, Localidad" required="">
+        <button class="btn btn-secondary btn-lg btn-block" type="submit">Buscar</button>
+    </div>
+
+
 
     <div class="table-responsive">
+
+    
+        {% if farmacias %}
         <table class="table table-hover">
 
             <thead class="thead-dark">
                 <tr>
-                    <th>C.i.</th>
-                    <th>Rol</th>
-                    <th>Usuario</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Telefono</th>
-                    <th>...</th>
+                    <th>Nombre </th>
+                    <th>Departamento</th>
+                    <th>Localidad</th>
+                    <th>Direccion</th>
+                    
                 </tr>
             </thead>
 
             <tbody>
-                {% for usuario in object_list %}
+                {% for  farmacias in farmacias %}
                 <tr>
-                    <td>{{ usuario.cedula_de_identidad }}</td>
-                    <td>{{ usuario.rol }}</td>
-                    <td>{{ usuario.usuario }}</td>
-                    <td>{{ usuario.nombre }}</td>
-                    <td>{{ usuario.apellido }}</td>
-                    <td>{{ usuario.telefono }}</td>
-                    <td><a class="btn btn-sm btn-primary" href="/recetas_usuario/{{ usuario.cedula_de_identidad }}">Ver recetas</a></td>
+                    <td>{{  farmacias.Nombre }}</td>
+                    <td>{{  farmacias.Departamento }}</td>
+                    <td>{{  farmacias.Localidad }}</td>
+                    <td>{{  farmacias.Direccion }}</td>
+                    <td>{{  farmacias.forma }}</td>
+                    
                 </tr>
                 {% endfor %}
             </tbody>
 
         </table>
+        {% endif %}
     </div>
 
-    {% endif %}
     <br>
+
     <!-- Menú de paginación -->
     {% if is_paginated %}
     <nav aria-label="Page navigation">
@@ -78,6 +86,9 @@
     </nav>
     {% endif %}
 
+
+
 </div>
+
 
 {% endblock content %}

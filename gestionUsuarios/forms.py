@@ -211,6 +211,4 @@ class Formulario_receta_usuario(forms.ModelForm):
                 self.fields['vencimiento'].widget=forms.TextInput({'class': 'form-control','type':'date'})
                 self.fields['estado'].widget=forms.TextInput({'class': 'form-control'}) 
                 self.fields['usuario'].widget=forms.TextInput({'class': 'form-control'})
-                self.fields['cedula_de_identidad'].widget=forms.TextInput({'class': 'form-control'})     
-                
-                   
+                self.fields['cedula_de_identidad'].widget=forms.TextInput({'class': 'form-control'})        

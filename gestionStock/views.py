@@ -28,6 +28,14 @@ class ListarMedicamentos(ListView):
         paginate_by = 8  # cantidad de elementos por pagina
 
 
+class ListarFarmacias(ListView):
+        model = Farmacias
+    
+        template_name = 'farmacias.html'
+
+        context_object_name = "farmacias"
+        paginate_by = 10  
+
 
 # =============================
 # Buscar Medicamento | no se usa =

@@ -49,7 +49,7 @@ class RegistrarUsuario(CreateView):
         form_class = FormularioCrearUsuario
 
         template_name = 'registrar_usuario.html'
-        success_url = reverse_lazy('lista_de_usuarios')
+        success_url = reverse_lazy('login')
 
 
 
@@ -184,7 +184,9 @@ class EditarReceta(UpdateView):
 
 
 
-
+# =======================================================================
+# Mis Recetas ============================================================
+# =======================================================================
 class MisRecetas(ListView):
 
     #model = Usuarios
@@ -209,6 +211,12 @@ class MisRecetas(ListView):
 
         return context         
 
+
+
+
+# =======================================================================
+# Recetas Usuario ========================================================
+# =======================================================================
 class RecetasUsuario(DetailView):
     model = Usuarios
     template_name = 'recetas_usuario.html'
@@ -219,7 +227,4 @@ class RecetasUsuario(DetailView):
         
         context['Recetas'] = Recetas.objects.filter(paciente=cedula_de_identidad)
    
-        
-
         return context
-
