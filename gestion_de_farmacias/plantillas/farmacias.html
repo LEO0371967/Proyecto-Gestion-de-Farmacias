@@ -2,9 +2,7 @@
 <!-- Contenido estatico de la pagina -->
 
 <!--Titulo de la pagina o pestaña-->
-{% block title %} Farmacias {% endblock %} 
-
-{% block content %}
+{% block title %} Farmacias {% endblock %} {% block content %}
 
 <!--Nav bar-->
 {% include "nav.html" %}
@@ -12,41 +10,45 @@
 <div class="m-3">
     <h1>Farmacias</h1>
 
-    <div class="consulta farmacias mb-3">
+    {% comment %} BUSCADOR {% endcomment %}
+    {% comment %}
+    <div class="consulta farmacias mb-3 ">
         <h3>
             <p>Criterios de búsqueda</p>
         </h3>
         <input type="text" class="form-control mb-2" id="cc-number" placeholder="Nombre, Departamento, Localidad" required="">
         <button class="btn btn-secondary btn-lg btn-block" type="submit">Buscar</button>
     </div>
+    {% endcomment %}
 
-
-
+    {% comment %} TABLA DE FARMACIAS {% endcomment %}
     <div class="table-responsive">
 
-    
-        {% if farmacias %}
-        <table class="table table-hover">
 
-            <thead class="thead-dark">
+        {% if farmacias %}
+        <table id="tabla_de_farmacias" class="table table-hover">
+
+            <thead class="thead-darkk">
                 <tr>
                     <th>Nombre </th>
                     <th>Departamento</th>
                     <th>Localidad</th>
                     <th>Direccion</th>
-                    
+
                 </tr>
             </thead>
 
             <tbody>
-                {% for  farmacias in farmacias %}
+                {% for farmacia in farmacias %}
                 <tr>
-                    <td>{{  farmacias.Nombre }}</td>
-                    <td>{{  farmacias.Departamento }}</td>
-                    <td>{{  farmacias.Localidad }}</td>
-                    <td>{{  farmacias.Direccion }}</td>
-                    <td>{{  farmacias.forma }}</td>
-                    
+                    <td>{{ farmacia.nombre }}</td>
+                    <td>{{ farmacia.departamento }}</td>
+                    <td>{{ farmacia.localidad }}</td>
+                    <td>{{ farmacia.direccion }}</td>
+                    {% comment %}
+                    <td>{{ farmacia.forma }}</td>
+                    farmacia.forma? {% endcomment %}
+
                 </tr>
                 {% endfor %}
             </tbody>
@@ -55,7 +57,7 @@
         {% endif %}
     </div>
 
-    <br>
+
 
     <!-- Menú de paginación -->
     {% if is_paginated %}
